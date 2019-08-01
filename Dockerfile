@@ -18,6 +18,8 @@ RUN wget $ARTIFACT_URL -q -O /tmp/$WAR_NAME && \
     unzip /tmp/$WAR_NAME -d $CATALINA_HOME/webapps/$WAR_NAME && \
     rm /tmp/$WAR_NAME
 
+ADD https://raw.githubusercontent.com/AtlasOfLivingAustralia/ala-install/master/ansible/roles/collectory/files/data/config/connection-profiles.json /data/ala-collectory/config/
+
 # check what else should be copied
 COPY ./data/ala-collectory/config/* /data/ala-collectory/config/
 
