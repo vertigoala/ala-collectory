@@ -19,6 +19,7 @@ RUN wget $ARTIFACT_URL -q -O /tmp/$WAR_NAME && \
     rm /tmp/$WAR_NAME
 
 ADD https://raw.githubusercontent.com/AtlasOfLivingAustralia/ala-install/master/ansible/roles/collectory/files/data/config/connection-profiles.json /data/ala-collectory/config/
+ADD https://raw.githubusercontent.com/AtlasOfLivingAustralia/ala-install/master/ansible/roles/collectory/files/data/config/charts.json /data/ala-collectory/config/
 
 # check what else should be copied
 COPY ./data/ala-collectory/config/* /data/ala-collectory/config/
