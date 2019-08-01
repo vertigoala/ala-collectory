@@ -1,0 +1,30 @@
+#
+# ALA Collectory (local execution with docker-compose)
+#
+version: '3'
+
+services:
+
+  mysqldb:
+    image: mysql:5.7
+    env_file: ./env/.envcollectory
+    container_name: mysqldb
+    volumes:
+      - db_data_collectory:/var/lib/mysql
+
+  collectory:
+    image: vertigoala/ala-collectory
+    build:
+      context: .
+    container_name: collectory
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysqldb
+    env_file: ./env/.envcollectory
+#    volumes:
+#      - ./data/ala-collectory/config/ala-collectory-config.properties:/data/ala-collectory/config/ala-collectory-config.properties
+#    command: /bin/ash -c "envsubst < /tmp/ala-config/ala-collectory-config.properties > /data/ala-collectory/config/ala-collectory-config.properties && catalina.sh run"
+
+volumes:
+  db_data_collectory:
